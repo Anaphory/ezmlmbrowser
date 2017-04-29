@@ -17,6 +17,10 @@ h6 {
 p {
   font-weight: 300;
 }
+a {
+    underline: none;
+    text-decoration:none; 
+}
 th,td {
     padding: 0.1em 1em 0.3em 1em;
 }
@@ -30,7 +34,6 @@ th,td {
   font-weight: 700;
 }
 .starter-template {
-  margin-top: 250px;
 }
 .starter-template .content {
   margin-left: 10px;
@@ -77,7 +80,6 @@ th,td {
 }
 .starter-template .links ul li a, a {
   color: #f2b7bd;
-  text-decoration: underline;
 }
 .starter-template .links ul li a:hover, a:hover {
   color: #ffffff;

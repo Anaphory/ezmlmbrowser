@@ -2,13 +2,17 @@
 
 {% block content %}
 <div class="content">
-  <h1><span class="font-semi-bold">ezmlmbrowser</span> <span class="smaller">Mailing List Archive Browser</span></h1>
+  <h1><span class="font-semi-bold">{{request.domain}}</span> <span class="smaller">Mailing List Archive Browser</span></h1>
   <p class="lead">Welcome to the mailing list archive powered by <span class="font-normal">ezmlmbrowser</span>.</p>
   <table>
-    <thead><tr><th>Name</th><th>Description</th></tr></thead>
+    <thead><tr><th>Name</th><th>Description</th><th></th></tr></thead>
     <tbody>
       {% for list in lists %}
-      <tr><td><a href="/{{list.name}}/">{{list.name}}</a></td><td>{{list.shortdescr}}</td></tr>
+      <tr>
+        <td><a href="/{{list.name}}/">{{list.name}}</a></td>
+        <td>{{list.shortdescr}}</td>
+        <td><a href="mailto:{{list.name}}-subscribe@{{request.domain}}">subscribe</a></td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>

@@ -7,9 +7,6 @@
 import os
 
 import email
-
-path = "/home/gereon/mailinglists/archives"
-
 parser = email.parser.Parser()
 
 class List:
@@ -20,7 +17,7 @@ class List:
 
     """
 
-    def __init__(self, name, path=path):
+    def __init__(self, name, path="/etc/ezmlm"):
         self.name = name
         self.path = os.path.join(path, self.name)
         self.description = ""
@@ -151,5 +148,3 @@ class List:
                    "n": int(n),
                    "messages": how_many}
 
-
-lists = {dir: List(dir) for dir in os.listdir(path)}

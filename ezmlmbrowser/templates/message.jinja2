@@ -2,7 +2,8 @@
 
 {% block content %}
 <div class="content">
-  <h1><a href="/{{list.name}}/">{{list.name}}</a>
+  <h1><span class="font-semi-bold">
+      <a href="/{{list.name}}/">{{list.name}}</a></span>
     <span class="smaller">archive</span></h1>
   <h2>
     <span class="font-semi-bold">{{message["Subject"]}}</span>
@@ -37,7 +38,7 @@
       {% for message in thread %}
       <tr>
         <td>
-          <a href="/{{list.name}}/a/{{message['author']}}">
+          <a href="/{{list.name}}/a/{{message['author_id']}}">
             {{message["author"]}}
           </a>
         </td>
