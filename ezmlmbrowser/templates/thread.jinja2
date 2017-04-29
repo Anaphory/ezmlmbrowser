@@ -1,0 +1,27 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="content">
+  <h1><span class="font-semi-bold">
+      <a href="/{{list.name}}/">{{list.name}}</a></span>
+    <span class="smaller">archive</span></h1>
+  <p class="lead">{{list.description}}</p>
+  <table>
+    <thead><tr><th>#</th><th>Subject</th></tr></thead>
+    <tbody>
+      {% for message in thread %}
+      <tr>
+        <td>
+          <a href="/{{list.name}}/a/{{message['author_id']}}">
+            {{message["author"]}}
+          </a>
+        </td>
+        <td><a href="/{{list.name}}/m/{{message['n']}}">
+            {{message['subject']}}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

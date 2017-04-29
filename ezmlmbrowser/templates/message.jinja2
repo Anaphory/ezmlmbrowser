@@ -1,0 +1,52 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="content">
+  <h1><a href="/{{list.name}}/">{{list.name}}</a>
+    <span class="smaller">archive</span></h1>
+  <h2>
+    <span class="font-semi-bold">{{message["Subject"]}}</span>
+  </h2>
+  <p class="lead">
+    {% if number - 1 >= list.min_msg %}
+    <a href="{{number - 1}}">←</a>
+    {% else %}
+    ←
+    {% endif %}
+   <span class="smaller">#{{number}}</span>
+    {% if number + 1 <= list.max_msg %}
+    <a href="{{number + 1}}">→</a>
+    {% else %}
+    →
+    {% endif %}
+  </p>
+  {% for part in message.walk()%}
+  {% if part.get_content_type() == 'text/plain' %}
+  <p style="white-space: pre-wrap;">{{part.get_payload(decode=True).decode('utf-8')}}</p>
+  {% endif %}
+  {% if part.get_content_type().startswith('image/') %}
+  <p>
+    <img src="data:{{part.get_content_type()}};base64,{{part.get_payload()}}" />
+  </p>
+  {% endif %}
+  {% endfor %}
+
+  <table>
+    <thead><tr><th>#</th><th>Subject</th></tr></thead>
+    <tbody>
+      {% for message in thread %}
+      <tr>
+        <td>
+          <a href="/{{list.name}}/a/{{message['author']}}">
+            {{message["author"]}}
+          </a>
+        </td>
+        <td><a href="/{{list.name}}/m/{{message['n']}}">
+            {{message['subject']}}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

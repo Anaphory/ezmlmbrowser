@@ -1,0 +1,40 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+{% set monthnames = ['', 'January', 'February', 'March', 'April', 'May',
+'June', 'July', 'August', 'September', 'October', 'November',
+'December'] %}
+{% set pre_month = list.months[list.months.index((year, month))+1] %}
+{% set next_month = list.months[list.months.index((year, month))-1] %}
+<div class="content">
+  <h1><span class="font-semi-bold">
+      <a href="/{{list.name}}/">{{list.name}}</a></span>
+    <span class="smaller">archive</span></h1>
+  <p class="lead">Messages 
+    {% if (year, month) > list.months[-1] %}
+    <a href="/{{list.name}}/d/{{pre_month[0]}}/{{pre_month[1]}}">
+      ⇦
+    </a>
+    {% else %}
+    ⇦
+    {% endif %}
+    {{monthnames[month]}} {{year}}
+    {% if (year, month) < list.months[0] %}
+    <a href="/{{list.name}}/d/{{next_month[0]}}/{{next_month[1]}}">
+    ⇨
+    {% else %}
+    ⇨
+    {% endif %}
+  </p>
+  <ul>
+    {% for thread in threads %}
+    <li><a href="/{{list.name}}/t/{{thread['thread']}}">
+        {{thread['subject']}}
+      </a><br />
+      Latest: <a href="/{{list.name}}/m/{{thread['n']}}">
+        {{list.subject(thread['n'])}}
+    </a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="content">
+  <h1><span class="font-semi-bold">
+      <a href="/{{list.name}}/">{{list.name}}</a></span>
+    <span class="smaller">archive</span></h1>
+  <p class="lead">{{list.description}}</p>
+  <table>
+    <thead><tr><th>Month</th></tr></thead>
+    <tbody>
+      {% for month in list.months %}
+      <tr><td>
+          <a href="/{{list.name}}/d/{{month[0]}}/{{month[1]}}">
+            {{month[1]}}/{{month[0]}}</a>
+      </td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}
